@@ -9,6 +9,11 @@ import ChartTime from "./components/ChartTime"
 import "./App.css"
 
 class App extends React.PureComponent {
+  state = {
+    city: null,
+    position: null,
+    date: null,
+  }
   render() {
     return (
       <div className="main">
