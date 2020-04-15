@@ -2,7 +2,12 @@ import React from "react"
 
 class Chart extends React.PureComponent {
   render() {
-    return <div className="wrapper-date">hello world</div>
+    const { height, count } = this.props
+    return (
+      <div className="col-1 chart" style={{ height: `${height}px` }}>
+        {count}
+      </div>
+    )
   }
 }
 
