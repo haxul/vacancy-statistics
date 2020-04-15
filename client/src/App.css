@@ -1,0 +1,49 @@
+.main {
+  width: 80%;
+  background-color: #f8f9fa;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 10px;
+}
+
+.cities,
+.positions {
+  text-align: center;
+}
+.cities .btn,
+.positions .btn {
+  margin: 5px 5px 0px 5px;
+}
+
+.positions {
+  margin-top: 15px;
+}
+
+.date {
+  margin-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+
+.charts-wrapper {
+  height: 568px;
+  background-image: url("./icons/chart-bg.png");
+}
+.charts {
+  height: 530px;
+}
+.chart {
+  background-color: rgb(116, 116, 156);
+  height: 568px;
+  margin: 2px 7px;
+  opacity: 90%;
+  border-radius: 4px 4px 0 0;
+  border: 2px solid #6c757d;
+}
+
+.time {
+  margin: 0px 7px;
+  padding: 0px;
+}
