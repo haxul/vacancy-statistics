@@ -1,6 +1,6 @@
 .main {
   width: 80%;
-  background-color: rgb(235, 241, 239);
+  background-color: #f8f9fa;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -13,11 +13,16 @@
 }
 .cities .btn,
 .positions .btn {
-  margin: 10px 5px;
+  margin: 5px 5px 0px 5px;
+}
+
+.positions {
+  margin-top: 15px;
 }
 
 .date {
+  margin-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  width: 60%;
+  width: 20%;
 }

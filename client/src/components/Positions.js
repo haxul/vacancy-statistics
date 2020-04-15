@@ -4,6 +4,7 @@ class Positions extends React.PureComponent {
   render() {
     return (
       <div className="positions">
+        <p>Выберите вакансию:</p>
         <button type="button" className="btn btn-secondary">
           Java
         </button>

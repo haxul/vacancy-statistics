@@ -6,12 +6,10 @@ class Date extends React.PureComponent {
       <div className="wrapper-date">
         <div className="input-group mb-3 date ">
           <input
-            type="text"
+            type="date"
             style={{ display: "block" }}
             className="form-control"
-            placeholder="Recipient's username"
-            aria-label="Recipient's username"
-            aria-describedby="basic-addon2"
+            placeholder="Введите дату"
           />
           <div className="input-group-append">
             <button className="btn btn-outline-secondary" type="button">
