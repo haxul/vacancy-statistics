@@ -16,6 +16,7 @@ class Cities extends React.PureComponent {
       if (button.city === e.target.innerText) {
         button.isPicked = true
         this.setState({ currentCity: button.city })
+        this.props.updateCityApp(button.city)
         return button
       }
       button.isPicked = false

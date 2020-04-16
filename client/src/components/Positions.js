@@ -17,12 +17,12 @@ class Positions extends React.PureComponent {
       if (button.position === e.target.innerText) {
         button.isPicked = true
         this.setState({ currentPosition: button.position })
+        this.props.updatePositionApp(button.position)
         return button
       }
       button.isPicked = false
       return button
     })
-
     this.setState({ buttons: updatedButtons })
   }
 
