@@ -1,10 +1,10 @@
-package com.haxul.hh;
+package com.posws;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HhApplicationTests {
+class PoswsApplicationTests {
 
     @Test
     void contextLoads() {
