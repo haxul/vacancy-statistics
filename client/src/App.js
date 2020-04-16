@@ -9,13 +9,49 @@ import ChartTime from "./components/ChartTime"
 import "./App.css"
 
 class App extends React.PureComponent {
+  state = {
+    city: null,
+    position: null,
+    date: null,
+  }
+
+  updateDate = (date) => {
+    this.setState({ date })
+  }
+
+  updatePosition = (position) => {
+    this.setState({ position })
+  }
+
+  updateCity = (city) => {
+    this.setState({ city })
+  }
+
+  sendInfoToFindStatistic = () => {
+    const { city, position, date } = this.state
+  }
+
   render() {
     return (
       <div className="main">
         <Header />
-        <Cities />
-        <Positions />
-        <Date />
+        <Cities updateCityApp={this.updateCity} />
+        <Positions updatePositionApp={this.updatePosition} />
+        <div className="wrapper-date">
+          <div className="input-group mb-3 date ">
+            <Date updateDateApp={this.updateDate} />
+            <div className="input-group-append">
+              <button
+                className="btn btn-outline-secondary"
+                type="button"
+                onClick={this.sendInfoToFindStatistic}
+              >
+                Найти
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div className="charts-wrapper container">
           <div className="row align-items-end justify-content-around charts">
             <Chart height={100} count={10} />
@@ -30,16 +66,16 @@ class App extends React.PureComponent {
             <Chart height={100} count={10} />
           </div>
           <div className="row align-items-end justify-content-around wrapper-times">
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
-            <ChartTime date={"41.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
+            <ChartTime date={"01.12.1941"} />
           </div>
         </div>
       </div>
