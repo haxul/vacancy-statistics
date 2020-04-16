@@ -29,7 +29,6 @@ class App extends React.PureComponent {
 
   sendInfoToFindStatistic = () => {
     const { city, position, date } = this.state
-    console.log(city, position, date)
   }
 
   render() {
