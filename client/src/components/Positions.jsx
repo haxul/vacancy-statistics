@@ -17,7 +17,7 @@ class Positions extends React.PureComponent {
       if (button.position === e.target.innerText) {
         button.isPicked = true
         this.setState({ currentPosition: button.position })
-        this.props.updatePositionApp(button.position)
+        this.props.updatePositionApp(button.position.toUpperCase())
         return button
       }
       button.isPicked = false
