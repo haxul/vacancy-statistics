@@ -14,7 +14,7 @@ class App extends React.PureComponent {
     city: null,
     position: null,
     date: null,
-    timeType: "week"
+    timeType: "WEEK"
   }
 
   updateTimeType = (timeType) => {

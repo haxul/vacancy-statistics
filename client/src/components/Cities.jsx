@@ -11,12 +11,17 @@ class Cities extends React.PureComponent {
   }
 
   handleCity = (e) => {
+    const cityMapper = {
+      "Самара" : "SAMARA",
+      "Москва" : "MOSCOW",
+      "Санкт-Петербург" : "SAINT_PETERSBURG"
+    }
     const { buttons } = this.state
     const updatedButtons = buttons.map((button) => {
       if (button.city === e.target.innerText) {
         button.isPicked = true
         this.setState({ currentCity: button.city })
-        this.props.updateCityApp(button.city)
+        this.props.updateCityApp(cityMapper[button.city])
         return button
       }
       button.isPicked = false

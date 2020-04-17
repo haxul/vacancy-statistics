@@ -9,11 +9,11 @@ class TimeTermType extends React.PureComponent {
 
     render() {
         return (
-            <select onChange={this.handleTimType} defaultValue={"week"}>
-                <option value="day">День</option>
-                <option value="week" >Неделя</option>
-                <option value="month">Месяц</option>
-                <option value="year">Год</option>
+            <select onChange={this.handleTimType} defaultValue={"WEEK"}>
+                <option value="DAY">День</option>
+                <option value="WEEK" >Неделя</option>
+                <option value="MONTH">Месяц</option>
+                <option value="YEAR">Год</option>
             </select>
         )
     }
