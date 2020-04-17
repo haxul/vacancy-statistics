@@ -1,10 +1,11 @@
 import React from "react"
-import Header from "./components/Header"
-import Cities from "./components/Cities"
-import Date from "./components/Date"
-import Positions from "./components/Positions"
-import Chart from "./components/Chart"
-import ChartTime from "./components/ChartTime"
+import Header from "./components/Header.jsx"
+import Cities from "./components/Cities.jsx"
+import Date from "./components/Date.jsx"
+import Positions from "./components/Positions.jsx"
+import Chart from "./components/Chart.jsx"
+import ChartTime from "./components/ChartTime.jsx"
+import TimeTermType from "./components/TimeTermType.jsx"
 
 import "./App.css"
 
@@ -13,8 +14,12 @@ class App extends React.PureComponent {
     city: null,
     position: null,
     date: null,
+    timeType: "week"
   }
 
+  updateTimeType = (timeType) => {
+    this.setState({timeType})
+  }
   updateDate = (date) => {
     this.setState({ date })
   }
@@ -40,6 +45,7 @@ class App extends React.PureComponent {
         <div className="wrapper-date">
           <div className="input-group mb-3 date ">
             <Date updateDateApp={this.updateDate} />
+            <TimeTermType updateTimeType={this.updateTimeType}/>
             <div className="input-group-append">
               <button
                 className="btn btn-outline-secondary"
