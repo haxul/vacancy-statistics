@@ -1,6 +1,9 @@
 package com.posws.controller;
 
 import com.posws.entities.TraceEntity;
+import com.posws.enums.CityNames;
+import com.posws.enums.PositionTypes;
+import com.posws.enums.TimeTypes;
 import com.posws.services.TraceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +23,11 @@ public class TraceController {
         return 10;
     }
     @GetMapping("/{position}/{city}")
-    private List<TraceEntity> getTraces(@PathVariable String position, @PathVariable String city, @RequestParam(required = false) Date date) {
-        return date == null ? traceService.findTraces(position, city) : traceService.findTraces(position, city, date);
+    private List<TraceEntity> getTraces(
+            @PathVariable PositionTypes position,
+            @PathVariable CityNames city,
+            @RequestParam(required = false) Date date,
+            @RequestParam(required = false) TimeTypes timeTypes) {
+        return date == null ? traceService.findTraces(position, city, timeTypes) : traceService.findTraces(position, city, date, timeTypes);
     }
 }
