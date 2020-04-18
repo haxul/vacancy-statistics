@@ -1,7 +1,6 @@
 import React from "react"
 import Header from "./components/Header.jsx"
 import Cities from "./components/Cities.jsx"
-import Date from "./components/Date.jsx"
 import Positions from "./components/Positions.jsx"
 import Chart from "./components/Chart.jsx"
 import ChartTime from "./components/ChartTime.jsx"
@@ -10,83 +9,68 @@ import TimeTermType from "./components/TimeTermType.jsx"
 import "./App.css"
 
 class App extends React.PureComponent {
-  state = {
-    city: null,
-    position: null,
-    date: null,
-    timeType: "WEEK"
-  }
+    state = {
+        city: null,
+        position: null,
+        timeType: "WEEK",
+        statsList: []
+    }
 
-  updateTimeType = (timeType) => {
-    this.setState({timeType})
-  }
-  updateDate = (date) => {
-    this.setState({ date })
-  }
+    updateTimeType = (timeType) => {
+        this.setState({timeType})
+    }
+    updatePosition = (position) => {
+        this.setState({position})
+    }
 
-  updatePosition = (position) => {
-    this.setState({ position })
-  }
+    updateCity = (city) => {
+        this.setState({city})
+    }
 
-  updateCity = (city) => {
-    this.setState({ city })
-  }
+    getStatistic = async () => {
+        const {city, position, timeType} = this.state
+        if (!city || !position) return
+        const url = `http://localhost:8080/api/traces/${position}/${city}?timeTypes=${timeType}`
+        const response = await fetch(url)
+        const body = await response.json()
+        this.setState({statsList: body})
+    }
 
-  sendInfoToFindStatistic = () => {
-    const { city, position, date } = this.state
-  }
+    render() {
+        const {statsList} = this.state
+        const chartList = statsList.map((elem, index) => <Chart key={index} height={100} count={elem.count}/>)
+        const dateList = statsList.map((elem, index) => <ChartTime key={index} date={elem.date}/>)
+        return (
+            <div className="main">
+                <Header/>
+                <Cities updateCityApp={this.updateCity}/>
+                <Positions updatePositionApp={this.updatePosition}/>
+                <div className="wrapper-date">
+                    <div className="input-group mb-3 date ">
+                        <TimeTermType updateTimeType={this.updateTimeType}/>
+                        <div className="input-group-append">
+                            <button
+                                className="btn btn-outline-secondary"
+                                type="button"
+                                onClick={this.getStatistic}
+                            >
+                                Найти
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-  render() {
-    return (
-      <div className="main">
-        <Header />
-        <Cities updateCityApp={this.updateCity} />
-        <Positions updatePositionApp={this.updatePosition} />
-        <div className="wrapper-date">
-          <div className="input-group mb-3 date ">
-            {/*<Date updateDateApp={this.updateDate} />*/}
-            <TimeTermType updateTimeType={this.updateTimeType}/>
-            <div className="input-group-append">
-              <button
-                className="btn btn-outline-secondary"
-                type="button"
-                onClick={this.sendInfoToFindStatistic}
-              >
-                Найти
-              </button>
+                <div className="charts-wrapper container">
+                    <div className="row align-items-end justify-content-around charts">
+                        {chartList}
+                    </div>
+                    <div className="row align-items-end justify-content-around wrapper-times">
+                        {dateList}
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-
-        <div className="charts-wrapper container">
-          <div className="row align-items-end justify-content-around charts">
-            <Chart height={100} count={10} />
-            <Chart height={250} count={10} />
-            <Chart height={300} count={10} />
-            <Chart height={400} count={10} />
-            <Chart height={300} count={10} />
-            <Chart height={450} count={10} />
-            <Chart height={280} count={10} />
-            <Chart height={100} count={10} />
-            <Chart height={100} count={10} />
-            <Chart height={100} count={10} />
-          </div>
-          <div className="row align-items-end justify-content-around wrapper-times">
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-            <ChartTime date={"01.12.1941"} />
-          </div>
-        </div>
-      </div>
-    )
-  }
+        )
+    }
 }
 
 export default App
