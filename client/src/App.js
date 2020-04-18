@@ -44,7 +44,7 @@ class App extends React.PureComponent {
         <Positions updatePositionApp={this.updatePosition} />
         <div className="wrapper-date">
           <div className="input-group mb-3 date ">
-            <Date updateDateApp={this.updateDate} />
+            {/*<Date updateDateApp={this.updateDate} />*/}
             <TimeTermType updateTimeType={this.updateTimeType}/>
             <div className="input-group-append">
               <button
