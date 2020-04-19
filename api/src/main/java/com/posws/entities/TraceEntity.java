@@ -28,5 +28,5 @@ public class TraceEntity {
     private String city;
 
     @Column(name = "count")
-    private String count;
+    private int count;
 }

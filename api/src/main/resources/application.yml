@@ -12,3 +12,7 @@ spring:
 
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+
+headhunter:
+  api:
+    url: https://api.hh.ru/

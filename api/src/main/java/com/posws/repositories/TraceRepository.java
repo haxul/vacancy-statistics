@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -23,4 +24,6 @@ public interface TraceRepository extends JpaRepository<TraceEntity, Integer> {
 
     @Query(value="SELECT count , date FROM traces WHERE position=:position AND city=:city ORDER BY date DESC LIMIT 70", nativeQuery=true)
     List<AvgPositionCountDto> getCountForEachWeek(String position, String city);
+
+    TraceEntity findByPositionAndCityAndDate(String position, String city, Date date);
 }
