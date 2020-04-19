@@ -9,6 +9,7 @@ import TimeTermType from "./components/TimeTermType.jsx"
 import "./App.css"
 
 class App extends React.PureComponent {
+
     state = {
         city: null,
         position: null,
@@ -38,8 +39,8 @@ class App extends React.PureComponent {
 
     render() {
         const {statsList} = this.state
-        const chartList = statsList.map((elem, index) => <Chart key={index} height={100} count={elem.count}/>)
-        const dateList = statsList.map((elem, index) => <ChartTime key={index} date={elem.date}/>)
+        const chartList = statsList.map((elem, index) => <Chart key={index} count={elem.count * 3}/>)
+        const dateList = statsList.map((elem, index) => <ChartTime key={index} date={elem.date.replace(/-/g, ".")}/>)
         return (
             <div className="main">
                 <Header/>
