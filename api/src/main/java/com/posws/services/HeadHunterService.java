@@ -26,7 +26,7 @@ public class HeadHunterService {
     @Value("${headhunter.api.url}")
     private String BASE_URL;
 
-    private HeadhunterSearchResponse findPositionsInHH(String searchText, int areaId) throws JsonProcessingException {
+    private HeadhunterSearchResponse requirePositionsInHeadHunter(String searchText, int areaId) throws JsonProcessingException {
         StringBuilder requestUrl = new StringBuilder(BASE_URL);
         requestUrl.append("vacancies/?area=").
                 append(areaId).
@@ -40,12 +40,20 @@ public class HeadHunterService {
         return mapper.readValue(responseBody, HeadhunterSearchResponse.class);
     }
 
-    @Scheduled(fixedRate = 86400000)
-    public void findJavaInSamara() throws JsonProcessingException {
-        String position = PositionTypes.JAVA.toString().toLowerCase();
-        String city = CityNames.SAMARA.toString().toLowerCase();
+    @Scheduled(cron = "0 0 1 * * *")
+    public void findTracesInRemoteHeadHunter() throws JsonProcessingException {
+        for (var positionType : PositionTypes.values()) {
+            for (var cityName : CityNames.values()) {
+                findCountByPositionAndCity(positionType, cityName);
+            }
+        }
+    }
 
-        HeadhunterSearchResponse response = findPositionsInHH(position, CityNames.SAMARA.getId());
+    private void findCountByPositionAndCity(PositionTypes positionType, CityNames cityName) throws JsonProcessingException {
+        String position = positionType.toString().toLowerCase();
+        String city = cityName.toString().toLowerCase();
+
+        HeadhunterSearchResponse response = requirePositionsInHeadHunter(position, cityName.getId());
         TraceEntity curTrace = traceRepository.findByPositionAndCityAndDate(position, city, new Date());
         if (curTrace != null) return;
 

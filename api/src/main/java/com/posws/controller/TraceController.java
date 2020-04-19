@@ -22,11 +22,6 @@ public class TraceController {
     private final TraceService traceService;
     private final HeadHunterService headHunterService;
 
-    @GetMapping
-    private void test() throws JsonProcessingException {
-        headHunterService.findJavaInSamara();
-    }
-
     @GetMapping("/{position}/{city}")
     private List<AvgPositionCountDto> getTraces(
             @PathVariable PositionTypes position,
