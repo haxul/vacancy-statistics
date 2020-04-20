@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://{db_service_name_in_docker-compose}:5432/{db_name_in_docker_compose}
+    url: jdbc:postgresql://db_service_name_in_docker-compose:5432/db_name_in_docker_compose
     username: username_in_docker_compose
     password: password_in_docker_compose
     driver-class-name: org.postgresql.Driver
