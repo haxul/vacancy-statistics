@@ -1,17 +1,13 @@
 package com.posws.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.posws.dto.AvgPositionCountDto;
 import com.posws.enums.CityNames;
 import com.posws.enums.PositionTypes;
 import com.posws.enums.TimeTypes;
-import com.posws.models.HeadhunterSearchResponse;
-import com.posws.services.HeadHunterService;
 import com.posws.services.TraceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,7 +16,6 @@ import java.util.List;
 public class TraceController {
 
     private final TraceService traceService;
-    private final HeadHunterService headHunterService;
 
     @GetMapping("/{position}/{city}")
     private List<AvgPositionCountDto> getTraces(

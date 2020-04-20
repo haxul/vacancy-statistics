@@ -1,0 +1,23 @@
+version: "3"
+services:
+  postgresdb:
+    image: postgres:11.7
+    container_name: postgres
+    volumes:
+      - ./pg_data:/var/lib/postgresql/data/pgdata
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db_name
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+    restart: always
+  webapp:
+    build: api/
+    container_name: springbootapp
+    ports:
+      - 8080:8080
+    restart: always
+    depends_on:
+      - postgresdb

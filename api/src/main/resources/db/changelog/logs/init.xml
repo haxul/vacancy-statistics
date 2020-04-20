@@ -10,7 +10,7 @@
             <column name="id" autoIncrement="true" type="int">
                 <constraints primaryKey="true"/>
             </column>
-            <column name="date" type="date" defaultValue="now">
+            <column name="date" type="date" defaultValue="now"/>
             <column name="position" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
@@ -23,7 +23,4 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="init-next" author="haxul">
-
-    </changeSet>
 </databaseChangeLog>
