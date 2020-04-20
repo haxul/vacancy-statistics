@@ -5,7 +5,7 @@
 ### how to build app:
 
 * install [docker-compose](https://docs.docker.com/compose/install/)
-* create docker-compose.yaml (example in the root)
+* create docker-compose.yaml (example in root directory)
 * create application.yml '/api/src/main/resources/' (example in the same directory)
 * in root directory 'docker-compose up --buid'
 
@@ -18,5 +18,5 @@ application runs on [localhost:8080](http://localhost:8080), if you use default 
 * npm install
 * npm start
 
-client runs on localhost:3000(http://localhost:3000)
+client runs on [localhost:3000](http://localhost:3000)
  
