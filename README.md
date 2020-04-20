@@ -1,4 +1,4 @@
-# Applicaiont to track positions on it market.
+# Applicaiont to track market positions.
 
 ### how to build app:
 
