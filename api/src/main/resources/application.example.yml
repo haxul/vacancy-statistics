@@ -19,3 +19,9 @@ spring:
 headhunter:
   api:
     url: https://api.hh.ru/
+
+logging:
+  file:
+    name: /home/haxul/Documents/development/vacancy-statistics/api/application.log
+
+
