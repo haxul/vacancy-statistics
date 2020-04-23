@@ -90,7 +90,7 @@ public class TraceServiceTest {
         list.add(new WeekAvgPositionCountDto(80.0, new Date()));
         list.add(new WeekAvgPositionCountDto(120.0, new Date()));
         list.add(new WeekAvgPositionCountDto(80.0, new Date()));
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String dateInString = "31-08-1982";
         Date date = sdf.parse(dateInString);
         list.add(new WeekAvgPositionCountDto(100.0, date));
@@ -105,6 +105,36 @@ public class TraceServiceTest {
         List<AvgPositionCountDto> traces = traceService.findTraces(PositionTypes.JAVA, CityNames.MOSCOW, TimeTypes.WEEK);
         assertEquals(10, traces.size());
         assertEquals(traces.get(0).getCount(), 100.0);
-        assertEquals("31-8-1982",sdf.format(traces.get(0).getDate()));
+        assertEquals("31-08-1982",sdf.format(traces.get(0).getDate()));
+    }
+
+    @Test
+    public void findTracesForWeekForNotFull70Days() throws ParseException {
+        List<AvgPositionCountDto> list = new ArrayList<>();
+
+        list.add(new WeekAvgPositionCountDto(140.0, new Date()));
+        list.add(new WeekAvgPositionCountDto(140.0, new Date()));
+        list.add(new WeekAvgPositionCountDto(100.0, new Date()));
+        list.add(new WeekAvgPositionCountDto(100.0, new Date()));
+        list.add(new WeekAvgPositionCountDto(100.0, new Date()));
+        list.add(new WeekAvgPositionCountDto(140.0, new Date()));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String dateInString = "31-08-1982";
+        Date date = sdf.parse(dateInString);
+        list.add(new WeekAvgPositionCountDto(120.0, date));
+
+
+        for (int i = 0; i < 10; i++) {
+            list.add(new WeekAvgPositionCountDto(100.0, new Date()));
+        }
+
+
+        doReturn(list).when(traceRepository).getCountForEachWeek(anyString(), anyString());
+        List<AvgPositionCountDto> traces = traceService.findTraces(PositionTypes.JAVA, CityNames.MOSCOW, TimeTypes.WEEK);
+        assertEquals(3, traces.size());
+        assertEquals(120, traces.get(0).getCount());
+        assertEquals(100, traces.get(1).getCount());
+        assertEquals(100, traces.get(2).getCount());
+
     }
 }

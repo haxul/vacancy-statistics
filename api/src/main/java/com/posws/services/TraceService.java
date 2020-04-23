@@ -32,7 +32,7 @@ public class TraceService {
         }
     }
 
-    private List<AvgPositionCountDto> computeWeekAvgCountForWeekTimeType(List<AvgPositionCountDto> inputList) {
+    public List<AvgPositionCountDto> computeWeekAvgCountForWeekTimeType(List<AvgPositionCountDto> inputList) {
         List<AvgPositionCountDto> resultList = new ArrayList<>(10);
         double avgCountValue = 0;
         for (int i = 0, count = 0; i < inputList.size(); i++, count++) {
@@ -40,11 +40,10 @@ public class TraceService {
                 count = 0;
                 resultList.add(new WeekAvgPositionCountDto((double) Math.round(avgCountValue / 7), inputList.get(i - 1).getDate()));
                 avgCountValue = 0;
-                continue;
             }
             boolean isLastElement = (inputList.size() - 1) == i;
             if (isLastElement) {
-                resultList.add(new WeekAvgPositionCountDto((double) Math.round(avgCountValue / (count + 1)), inputList.get(i - 1).getDate()));
+                resultList.add(new WeekAvgPositionCountDto((double) Math.round(avgCountValue / count), inputList.get(i - 1).getDate()));
                 return resultList;
             }
             avgCountValue += inputList.get(i).getCount();
