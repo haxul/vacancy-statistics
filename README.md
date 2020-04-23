@@ -4,12 +4,11 @@
 
 ### how to build app:
 
-* install [docker-compose](https://docs.docker.com/compose/install/)
+* install [docker-compose](https://docs.docker.com/compose/install/), java (>= 8), [maven](http://maven.apache.org/)
 * create docker-compose.yaml (example in root directory)
-* create application.yml '/api/src/main/resources/' (example in the same directory)
-* in root directory 'docker-compose up --build'
+* run start.sh in root
 
-application runs on [localhost:8080](http://localhost:8080), if you use default configuration
+application runs on [localhost:8989](http://localhost:8989), if you use default configuration
 
 ### how to run only client:
 
