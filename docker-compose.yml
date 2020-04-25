@@ -37,6 +37,3 @@ services:
       - postgresdb
     ports:
       - 80:8989
-~                                                                                                                                                                                                                  
-~                                                                                                                                                                                                                  
-~                              
