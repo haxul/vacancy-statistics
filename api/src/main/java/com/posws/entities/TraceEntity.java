@@ -1,7 +1,6 @@
 package com.posws.entities;
 
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;

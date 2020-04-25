@@ -22,5 +22,5 @@ headhunter:
 
 logging:
   file:
-    name: /home/haxul/Documents/development/vacancy-statistics/api/application.log
+    name: /root/vacancy-statistics/application.log
 
