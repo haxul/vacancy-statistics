@@ -10,7 +10,7 @@
 
 application runs on [localhost:8989](http://localhost:8989), if you use default configuration
 
-### how to run only client:
+### how to run client only:
 
 * install [node.js](https://nodejs.org/en/)
 * cd client
