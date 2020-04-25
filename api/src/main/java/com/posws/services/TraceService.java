@@ -32,7 +32,7 @@ public class TraceService {
         }
     }
 
-    public List<AvgPositionCountDto> computeWeekAvgCountForWeekTimeType(List<AvgPositionCountDto> inputList) {
+    private List<AvgPositionCountDto> computeWeekAvgCountForWeekTimeType(List<AvgPositionCountDto> inputList) {
         List<AvgPositionCountDto> resultList = new ArrayList<>(10);
         double avgCountValue = 0;
         for (int i = 0, count = 0; i < inputList.size(); i++, count++) {

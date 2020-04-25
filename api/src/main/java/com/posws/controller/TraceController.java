@@ -18,7 +18,7 @@ public class TraceController {
     private final TraceService traceService;
 
     @GetMapping("/{position}/{city}")
-    private List<AvgPositionCountDto> getTraces(
+    public List<AvgPositionCountDto> getTraces(
             @PathVariable PositionTypes position,
             @PathVariable CityNames city,
             @RequestParam TimeTypes timeTypes) {

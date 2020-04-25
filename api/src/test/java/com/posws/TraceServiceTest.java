@@ -10,10 +10,8 @@ import com.posws.repositories.TraceRepository;
 import com.posws.services.TraceService;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -44,8 +42,6 @@ public class TraceServiceTest {
     @MockBean
     private TraceRepository traceRepository;
 
-    @MockBean
-    private ModelMapper modelMapper;
 
     @Before
     public void executedBeforeEach() {
@@ -109,7 +105,7 @@ public class TraceServiceTest {
     }
 
     @Test
-    public void findTracesForWeekForNotFull70Days() throws ParseException {
+    public void findTracesForWeekNotFull70Days() throws ParseException {
         List<AvgPositionCountDto> list = new ArrayList<>();
 
         list.add(new WeekAvgPositionCountDto(140.0, new Date()));

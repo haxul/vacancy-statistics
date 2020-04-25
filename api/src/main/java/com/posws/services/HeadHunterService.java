@@ -7,6 +7,7 @@ import com.posws.enums.CityNames;
 import com.posws.enums.PositionTypes;
 import com.posws.repositories.TraceRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -19,6 +20,7 @@ import java.util.Date;
 @Service
 @RequiredArgsConstructor
 @EnableScheduling
+@Slf4j
 public class HeadHunterService {
 
     private final TraceRepository traceRepository;
@@ -47,6 +49,7 @@ public class HeadHunterService {
                 findCountByPositionAndCity(positionType, cityName);
             }
         }
+        log.info("Traces were updated with headhunter.com at {}", new Date());
     }
 
     private void findCountByPositionAndCity(PositionTypes positionType, CityNames cityName) throws JsonProcessingException {
