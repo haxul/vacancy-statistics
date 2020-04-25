@@ -5,6 +5,7 @@ import Positions from "./components/Positions.jsx"
 import Chart from "./components/Chart.jsx"
 import ChartTime from "./components/ChartTime.jsx"
 import TimeTermType from "./components/TimeTermType.jsx"
+import {getPort} from "./configuration/configs"
 
 import "./App.css"
 
@@ -31,7 +32,7 @@ class App extends React.PureComponent {
     getStatistic = async () => {
         const {city, position, timeType} = this.state
         if (!city || !position) return
-        const url = `http://localhost:8080/api/traces/${position}/${city}?timeTypes=${timeType}`
+        const url = `http://localhost:${getPort()}/api/traces/${position}/${city}?timeTypes=${timeType}`
         const response = await fetch(url)
         const body = await response.json()
         this.setState({statsList: body})
