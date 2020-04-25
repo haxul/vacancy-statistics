@@ -42,11 +42,11 @@ public class TraceService {
                 avgCountValue = 0;
             }
             boolean isLastElement = (inputList.size() - 1) == i;
-            if (isLastElement) {
-                resultList.add(new WeekAvgPositionCountDto((double) Math.round(avgCountValue / count), inputList.get(i - 1).getDate()));
+            avgCountValue += inputList.get(i).getCount();
+            if (isLastElement && i != 0) {
+                resultList.add(new WeekAvgPositionCountDto((double) Math.round(avgCountValue / (count + 1)), inputList.get(i).getDate()));
                 return resultList;
             }
-            avgCountValue += inputList.get(i).getCount();
         }
         return resultList;
     }

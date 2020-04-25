@@ -34,6 +34,8 @@ class App extends React.PureComponent {
         const url = `http://localhost:8080/api/traces/${position}/${city}?timeTypes=${timeType}`
         const response = await fetch(url)
         const body = await response.json()
+        console.log(body)
+        return
         this.setState({statsList: body})
     }
 
