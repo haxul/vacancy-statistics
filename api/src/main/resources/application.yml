@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${CONTAINER_DB:localhost}:5432/${POSTGRES_DB:headhunter}
+    username: ${POSTGRES_USER:haxul}
+    password: ${POSTGRES_PASSWORD:haxul}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      ddl-auto: update
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+headhunter:
+  api:
+    url: https://api.hh.ru/
+
+logging:
+  file:
+    name: /home/haxul/Documents/development/vacancy-statistics/api/application.log
+
