@@ -34,14 +34,13 @@ class App extends React.PureComponent {
         const url = `http://localhost:8080/api/traces/${position}/${city}?timeTypes=${timeType}`
         const response = await fetch(url)
         const body = await response.json()
-        console.log(body)
-        return
         this.setState({statsList: body})
     }
 
     render() {
         const {statsList} = this.state
-        const chartList = statsList.map((elem, index) => <Chart key={index} count={elem.count * 3}/>)
+        const maxColumnHeight = Math.max(...statsList.map((e) => e.count));
+        const chartList = statsList.map((elem, index) => <Chart key={index} count={elem.count} max={maxColumnHeight}/>)
         const dateList = statsList.map((elem, index) => <ChartTime key={index} date={elem.date.replace(/-/g, ".")}/>)
         return (
             <div className="main">
