@@ -6,9 +6,9 @@ services:
     volumes:
       - ./pg_data:/var/lib/postgresql/data/pgdata
     environment:
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: db_name
+      POSTGRES_USER: haxul
+      POSTGRES_PASSWORD: haxul
+      POSTGRES_DB: headhunter
       PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - 5432:5432
@@ -23,9 +23,9 @@ services:
       - postgresdb
     environment:
       CONTAINER_DB: postgresdb
-      POSTGRES_USER: username
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: db_name
+      POSTGRES_USER: haxul
+      POSTGRES_PASSWORD: haxul
+      POSTGRES_DB: headhunter
   nginx:
     image: nginx:1.17.2-alpine
     container_name: nginx
@@ -36,4 +36,4 @@ services:
     depends_on:
       - postgresdb
     ports:
-      - 8989:8989
+      - 80:8989
