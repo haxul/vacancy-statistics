@@ -22,5 +22,5 @@ headhunter:
 
 logging:
   file:
-    name: /root/vacancy-statistics/application.log
+    name: /webapp/logs/application.log
 
