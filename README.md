@@ -4,7 +4,7 @@
 
 ### how to build app:
 
-* install [docker-compose](https://docs.docker.com/compose/install/), java (>= 8), [maven](http://maven.apache.org/)
+* install [docker-compose](https://docs.docker.com/compose/install/), java (>= 11), [maven](http://maven.apache.org/)
 * create docker-compose.yaml (example in root directory)
 * run start.sh in root
 
