@@ -30,7 +30,7 @@ build/
 
 ### VS Code ###
 .vscode/
-
+logs/dump.sql
 /src/main/resources/public/*
 !/src/main/resources/public/.gitkeep
 
