@@ -5,11 +5,18 @@ import Positions from "./components/Positions.jsx"
 import Chart from "./components/Chart.jsx"
 import ChartTime from "./components/ChartTime.jsx"
 import TimeTermType from "./components/TimeTermType.jsx"
+import NoPickCityOrPositionPopup from "./components/popups/NoPickCityOrPositionPopup.jsx"
 import {getPort, getHost} from "./configuration/configs"
 
 import "./App.css"
 
 class App extends React.PureComponent {
+
+    constructor(props) {
+        super(props);
+        this.runButton = React.createRef();
+    }
+
 
     state = {
         city: null,
@@ -29,14 +36,24 @@ class App extends React.PureComponent {
         this.setState({city})
     }
 
+    throwNoPickCityOrPositionPopup = () => {
+        this.runButton.current.dataset.target="#NoPickCityOrPositionPopup"
+        this.runButton.current.click()
+        this.runButton.current.removeAttribute("data-target")
+    }
+
     getStatistic = async () => {
         const {city, position, timeType} = this.state
-        if (!city || !position) return
+        if (!city || !position) {
+            this.throwNoPickCityOrPositionPopup()
+            return
+        }
         const url = `http://${getHost()}:${getPort()}/api/traces/${position}/${city}?timeTypes=${timeType}`
         const response = await fetch(url)
         const body = await response.json()
         if (response.status === 200) this.setState({statsList: body})
     }
+
 
     render() {
         const {statsList} = this.state
@@ -53,6 +70,8 @@ class App extends React.PureComponent {
                         <TimeTermType updateTimeType={this.updateTimeType}/>
                         <div className="input-group-append">
                             <button
+                                ref={this.runButton}
+                                data-toggle="modal"
                                 className="btn btn-outline-secondary"
                                 type="button"
                                 onClick={this.getStatistic}
@@ -71,6 +90,7 @@ class App extends React.PureComponent {
                         {dateList}
                     </div>
                 </div>
+                <NoPickCityOrPositionPopup/>
             </div>
         )
     }
