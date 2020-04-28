@@ -35,7 +35,7 @@ class App extends React.PureComponent {
         const url = `http://${getHost()}:${getPort()}/api/traces/${position}/${city}?timeTypes=${timeType}`
         const response = await fetch(url)
         const body = await response.json()
-        this.setState({statsList: body})
+        if (response.status === 200) this.setState({statsList: body})
     }
 
     render() {
