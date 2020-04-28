@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface TraceRepository extends JpaRepository<TraceEntity, Integer> {
 
-    @Query(value = "SELECT  count, date FROM traces WHERE position=:position AND city=:city ORDER BY date DESC LIMIT 10"
+    @Query(value = "SELECT  count, date FROM traces WHERE position=:position AND city=:city ORDER BY date LIMIT 10"
             , nativeQuery = true)
     List<AvgPositionCountDto> getCountForEachDay(String position, String city);
 
@@ -22,7 +22,7 @@ public interface TraceRepository extends JpaRepository<TraceEntity, Integer> {
     List<AvgPositionCountDto> getCountForEachMonth(String position, String city);
 
 
-    @Query(value="SELECT count , date FROM traces WHERE position=:position AND city=:city ORDER BY date DESC LIMIT 70", nativeQuery=true)
+    @Query(value="SELECT count , date FROM traces WHERE position=:position AND city=:city ORDER BY date LIMIT 70", nativeQuery=true)
     List<AvgPositionCountDto> getCountForEachWeek(String position, String city);
 
     TraceEntity findByPositionAndCityAndDate(String position, String city, Date date);
