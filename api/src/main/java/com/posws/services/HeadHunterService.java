@@ -53,9 +53,11 @@ public class HeadHunterService {
     }
 
     private void findCountByPositionAndCity(PositionTypes positionType, CityNames cityName) throws JsonProcessingException {
-        String position = positionType.toString().toLowerCase();
-        String city = cityName.toString().toLowerCase();
+        String position = positionType.getDetailedName() == null ?
+                positionType.toString().toLowerCase() :
+                positionType.getDetailedName();
 
+        String city = cityName.toString().toLowerCase();
         HeadhunterSearchResponse response = requirePositionsInHeadHunter(position, cityName.getId());
         TraceEntity curTrace = traceRepository.findByPositionAndCityAndDate(position, city, new Date());
         if (curTrace != null) return;
@@ -64,7 +66,7 @@ public class HeadHunterService {
         trace.setCity(city);
         trace.setCount(response.getFound());
         trace.setDate(new Date());
-        trace.setPosition(position);
+        trace.setPosition(positionType.toString().toLowerCase());
         traceRepository.save(trace);
     }
 }
