@@ -22,7 +22,7 @@ public class BackupService {
     @Scheduled(cron = "0 0 4 * * *")
     public void dumpDatabase() throws IOException, InterruptedException {
         ProcessBuilder processBuilder = new ProcessBuilder();
-        processBuilder.command("bash", "-c", "pg_dump --no-password --inserts " + database + " > /webapp/logs/dump.sql");
+        processBuilder.command("bash", "-c", "pg_dump --no-password --inserts --host=postgresdb --port=5432" + database + " > /webapp/logs/dump.sql");
         Process process = processBuilder.start();
 
         StringBuilder output = new StringBuilder();
